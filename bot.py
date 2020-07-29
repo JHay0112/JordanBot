@@ -11,7 +11,9 @@
 
 # -- Import --
 
-from discord.ext import commands # Import discord for running discord bot
+from discord.ext import commands # Import discord commands
+import discord # Import the actualy discord
+import random # Used to randomly select things
 
 # -- Configuration --
 
@@ -20,10 +22,22 @@ key = open("key.txt", "r").readline() # Get key from text file
 
 # -- Functions --
 
+# - Events -
+
 # Run when bot is logged in
 @bot.event
 async def on_ready():
+
+    await bot.change_presence(activity = discord.Activity(name = "over ShannonBot", type = discord.ActivityType.watching))
     print("Logged in!")
+
+# On message process
+@bot.event
+async def on_message(message):
+
+    await bot.process_commands(message)
+
+# - Commands -
 
 # Ping bot
 @bot.command(name = "ping")
