@@ -14,6 +14,7 @@
 from discord.ext import commands # Import discord commands
 import discord # Import the actualy discord
 import random # Used to randomly select things
+import time
 
 # -- Configuration --
 
@@ -28,7 +29,6 @@ key = open("key.txt", "r").readline() # Get key from text file
 @bot.event
 async def on_ready():
 
-    await bot.change_presence(activity = discord.Activity(name = "over ShannonBot", type = discord.ActivityType.watching))
     print("Logged in!")
 
 # On message process
