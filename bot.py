@@ -11,11 +11,11 @@
 
 # -- Import --
 
-import discord # Import discord for running discord bot
+from discord.ext import commands # Import discord for running discord bot
 
 # -- Configuration --
 
-bot = discord.Client() # Create bot instance
+bot = commands.Bot(command_prefix = "jbot ") # Create bot instance
 key = open("key.txt", "r").readline() # Get key from text file
 
 # -- Functions --
@@ -24,6 +24,11 @@ key = open("key.txt", "r").readline() # Get key from text file
 @bot.event
 async def on_ready():
     print("Logged in!")
+
+# Ping bot
+@bot.command(name = "ping")
+async def ping(ctx):
+    await ctx.send(f"Latency: {round((bot.latency * 1000), 1)}ms")
 
 # -- Main --
 
