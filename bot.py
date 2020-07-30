@@ -45,10 +45,6 @@ async def on_message(message):
     if message.attachments or message.embeds:
         vote_on(message)
 
-    # A special wee reaction for a friend of mine
-    if message.author.id == 475592526187855885:
-        await message.add_reaction("🇧🇷")
-
     await bot.process_commands(message)
 
 # - Commands -
