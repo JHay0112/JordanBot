@@ -58,7 +58,7 @@ async def ping(ctx):
     await ctx.send(f"Latency: {round((bot.latency * 1000), 1)}ms")
 
 # Vote on previous message in channel
-@bot.command()
+@bot.command(name = "vote")
 async def vote(ctx):
 
     # get the previous message
