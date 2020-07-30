@@ -58,7 +58,7 @@ async def ping(ctx):
     await ctx.send(f"Latency: {round((bot.latency * 1000), 1)}ms")
 
 # Vote on previous message in channel
-@bot.command(name = "vote")
+@bot.command()
 async def vote(ctx):
 
     # get the previous message
@@ -66,7 +66,7 @@ async def vote(ctx):
     prev_message = prev_message[-1]
 
     # delete the message that called this command
-    await ctx.ctx.delete()
+    await ctx.message.delete()
 
     # Add reactions
     await vote_on(prev_message)
