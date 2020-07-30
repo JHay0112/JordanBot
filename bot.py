@@ -86,6 +86,12 @@ async def reload(ctx):
     else:
         await ctx.send(f"{ctx.author.name} is not authorised to use this command")
 
+# Ask JordanBot to fix something
+@bot.command()
+async def fix(ctx, arg):
+
+    ctx.send(f"'{arg}' aye? If it ain't broke, don't fix it")
+
 # -- Main --
 
 bot.run(key) # Run bot
