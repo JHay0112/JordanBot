@@ -27,10 +27,10 @@ admins = [306566109040082944] # User ID of admins
 # -- Functions --
 
 # Add reactions for users to vote on a message
-async def vote_on(message):
+async def vote_on(ctx):
 
-    await message.add_reaction("🔼")
-    await message.add_reaction("🔽")
+    await ctx.add_reaction("🔼")
+    await ctx.add_reaction("🔽")
 
 # - Events -
 
@@ -42,49 +42,49 @@ async def on_ready():
 
 # On message process
 @bot.event
-async def on_message(message):
+async def on_message(ctx):
 
     # Add message reactions for images and embeds
-    if message.attachments or message.embeds:
-        vote_on(message)
+    if ctx.attachments or ctx.embeds:
+        vote_on(ctx)
 
-    await bot.process_commands(message)
+    await bot.process_commands(ctx)
 
 # - Commands -
 
 # Ping bot
 @bot.command()
-async def ping(message):
-    await message.send(f"Latency: {round((bot.latency * 1000), 1)}ms")
+async def ping(ctx):
+    await ctx.send(f"Latency: {round((bot.latency * 1000), 1)}ms")
 
 # Vote on previous message in channel
 @bot.command()
-async def vote(message):
+async def vote(ctx):
 
     # get the previous message
-    prev_message = await message.channel.history(limit = 2).flatten()
+    prev_message = await ctx.channel.history(limit = 2).flatten()
     prev_message = prev_message[-1]
 
     # delete the message that called this command
-    await message.message.delete()
+    await ctx.ctx.delete()
 
     # Add reactions
     await vote_on(prev_message)
 
 # Rebuild and reload code
 @bot.command()
-async def reload(message):
+async def reload(ctx):
 
-    if message.author.id in admins:
+    if ctx.author.id in admins:
 
-        await message.send("JordanBot may go down temporarily")
+        await ctx.send("JordanBot may go down temporarily")
 
         subprocess.call("./reload.sh")
 
         sys.exit()
 
     else:
-        await message.send(f"{message.author.name} is not authorised to use this command")
+        await ctx.send(f"{ctx.author.name} is not authorised to use this command")
 
 # -- Main --
 
