@@ -113,6 +113,14 @@ async def nuke(ctx):
             except:
                 pass
 
+    else:
+
+        await ctx.add_reaction("🇧🇷")
+
+        # if Shannon then horatio
+        if(ctx.author.id == 190696762749616128):
+            await message.send("Horatio")
+
 # -- Main --
 
 bot.run(key) # Run bot
