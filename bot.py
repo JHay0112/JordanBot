@@ -77,14 +77,14 @@ async def reload(message):
 
     if message.author.id in admins:
 
-        await message.send("Getting new code from Github and reloading!")
+        await message.send("JordanBot may go down temporarily")
 
         subprocess.call("./reload.sh")
 
         sys.exit()
 
     else:
-        await message.send(f"{message.author.name} is not an admin!")
+        await message.send(f"{message.author.name} is not authorised to use this command")
 
 # -- Main --
 
