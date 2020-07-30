@@ -32,6 +32,17 @@ async def vote_on(ctx):
     await ctx.add_reaction("🔼")
     await ctx.add_reaction("🔽")
 
+# Check user is admin first
+async def admin(ctx):
+
+    global admins
+
+    if ctx.author.id in admins:
+        return(True)
+    else:
+        await ctx.send(f"{ctx.author.name} is not authorised to use this command")
+        return(False)
+
 # - Events -
 
 # Run when bot is logged in
@@ -75,7 +86,7 @@ async def vote(ctx):
 @bot.command()
 async def reload(ctx):
 
-    if ctx.author.id in admins:
+    if(admin(ctx)):
 
         await ctx.send("JordanBot may go down temporarily")
 
@@ -83,14 +94,22 @@ async def reload(ctx):
 
         sys.exit()
 
-    else:
-        await ctx.send(f"{ctx.author.name} is not authorised to use this command")
-
 # Ask JordanBot to fix something
 @bot.command()
 async def fix(ctx, arg):
 
     await ctx.send(f"'{arg}' aye? If it ain't broke, don't fix it")
+
+@bot.command()
+async def nuke(ctx):
+
+    if(admin(ctx)):
+
+        await ctx.send("I apologise in advance for what I am about to do"):
+
+        for message in await ctx.channel.history():
+
+            message.add_reaction("🇧🇷")
 
 # -- Main --
 
