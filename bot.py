@@ -119,7 +119,7 @@ async def nuke(ctx):
 
         # if Shannon then horatio
         if(ctx.message.author.id == 190696762749616128):
-            await message.send("Horatio")
+            await ctx.send("Horatio")
 
 # -- Main --
 
