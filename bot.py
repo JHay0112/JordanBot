@@ -86,7 +86,7 @@ async def vote(ctx):
 @bot.command()
 async def reload(ctx):
 
-    if(admin(ctx)):
+    if(admin(ctx) == True):
 
         await ctx.send("JordanBot may go down temporarily")
 
@@ -103,7 +103,7 @@ async def fix(ctx, arg):
 @bot.command()
 async def nuke(ctx):
 
-    if(admin(ctx)):
+    if(admin(ctx) == True):
 
         await ctx.send("I apologise in advance for what I am about to do")
 
