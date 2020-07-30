@@ -23,6 +23,12 @@ key = open("key.txt", "r").readline() # Get key from text file
 
 # -- Functions --
 
+# Add reactions for users to vote on a message
+async def vote_on(message):
+
+    await message.add_reaction("🔼")
+    await message.add_reaction("🔽")
+
 # - Events -
 
 # Run when bot is logged in
@@ -35,14 +41,32 @@ async def on_ready():
 @bot.event
 async def on_message(message):
 
+    # Add message reactions for images and embeds
+    if message.attachments or message.embeds:
+        vote_on(message)
+
     await bot.process_commands(message)
 
 # - Commands -
 
 # Ping bot
 @bot.command(name = "ping")
-async def ping(ctx):
-    await ctx.send(f"Latency: {round((bot.latency * 1000), 1)}ms")
+async def ping(message):
+    await message.send(f"Latency: {round((bot.latency * 1000), 1)}ms")
+
+# Vote on previous message in channel
+@bot.command(name = "vote")
+async def vote(message):
+
+    # get the previous message
+    prev_message = await message.channel.history(limit = 2).flatten()
+    prev_message = prev_message[-1]
+
+    # delete the message that called this command
+    await message.message.delete()
+
+    # Add reactions
+    await vote_on(prev_message)
 
 # -- Main --
 
