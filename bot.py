@@ -72,7 +72,7 @@ async def vote(message):
     await vote_on(prev_message)
 
 # Rebuild and reload code
-@bot.command(name = "reload")
+@bot.command()
 async def reload(message):
 
     if message.author.id in admins:
