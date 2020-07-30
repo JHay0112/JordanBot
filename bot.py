@@ -53,12 +53,12 @@ async def on_message(message):
 # - Commands -
 
 # Ping bot
-@bot.command(name = "ping")
+@bot.command()
 async def ping(message):
     await message.send(f"Latency: {round((bot.latency * 1000), 1)}ms")
 
 # Vote on previous message in channel
-@bot.command(name = "vote")
+@bot.command()
 async def vote(message):
 
     # get the previous message
