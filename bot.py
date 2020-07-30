@@ -76,6 +76,8 @@ async def reload(message):
 
     if message.author.id in admins:
 
+        await message.send("Getting new code from Github and reloading")
+
         subprocess.call("reload.sh")
 
         exit()
