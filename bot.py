@@ -107,7 +107,7 @@ async def nuke(ctx):
 
         await ctx.send("I apologise in advance for what I am about to do")
 
-        for message in await ctx.channel.history():
+        async for message in await ctx.channel.history():
 
             await message.add_reaction("🇧🇷")
 
