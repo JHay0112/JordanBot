@@ -108,7 +108,10 @@ async def nuke(ctx):
 
         async for message in ctx.channel.history():
 
-            await message.add_reaction("🇧🇷")
+            try:
+                await message.add_reaction("🇧🇷")
+            except:
+                pass
 
 # -- Main --
 
