@@ -16,6 +16,7 @@ import discord # Import the actualy discord
 import random # Used to randomly select things
 import time
 import subprocess
+import sys
 
 # -- Configuration --
 
@@ -80,7 +81,7 @@ async def reload(message):
 
         subprocess.call("./reload.sh")
 
-        exit()
+        sys.exit()
 
     else:
         await message.send(f"{message.author.name} is not an admin!")
