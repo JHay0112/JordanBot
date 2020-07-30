@@ -90,7 +90,7 @@ async def reload(ctx):
 @bot.command()
 async def fix(ctx, arg):
 
-    ctx.send(f"'{arg}' aye? If it ain't broke, don't fix it")
+    await ctx.send(f"'{arg}' aye? If it ain't broke, don't fix it")
 
 # -- Main --
 
