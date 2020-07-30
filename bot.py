@@ -58,7 +58,7 @@ async def on_message(ctx):
     if ctx.attachments or ctx.embeds:
         vote_on(ctx)
 
-    if ctx.contains("JordanBot"):
+    if ctx.message.contains("JordanBot"):
         await ctx.send("Piss off, leave me alone")
 
     await bot.process_commands(ctx)
