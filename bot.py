@@ -46,7 +46,7 @@ async def on_message(message):
         vote_on(message)
 
     # A special wee reaction for a friend of mine
-    if message.author == 475592526187855885:
+    if message.author.id == 475592526187855885:
         await message.add_reaction("🇧🇷")
 
     await bot.process_commands(message)
