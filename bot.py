@@ -78,7 +78,7 @@ async def reload(message):
 
         await message.send("Getting new code from Github and reloading")
 
-        subprocess.call("reload.sh")
+        subprocess.call("./reload.sh")
 
         exit()
 
