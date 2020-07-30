@@ -85,6 +85,12 @@ async def reload(message):
     else:
         await message.send(f"{message.author.name} is not an admin!")
 
+# Don't ask
+@bot.command(name = "seduce")
+async def seduce(message):
+
+    await message.send(f"{message.author.name} is a pedophile")
+
 # -- Main --
 
 bot.run(key) # Run bot
