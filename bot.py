@@ -15,11 +15,13 @@ from discord.ext import commands # Import discord commands
 import discord # Import the actualy discord
 import random # Used to randomly select things
 import time
+import subprocess
 
 # -- Configuration --
 
 bot = commands.Bot(command_prefix = "jbot ") # Create bot instance
 key = open("key.txt", "r").readline() # Get key from text file
+admins = [306566109040082944] # User ID of admins
 
 # -- Functions --
 
@@ -67,6 +69,19 @@ async def vote(message):
 
     # Add reactions
     await vote_on(prev_message)
+
+# Rebuild and reload code
+@bot.command(name = "reload")
+async def reload(message):
+
+    if message.author.id in admins:
+
+        subprocess.call("reload.sh")
+
+        exit()
+
+    else:
+        await message.send(f"{message.author.name} is not an admin!")
 
 # -- Main --
 
