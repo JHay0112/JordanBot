@@ -40,7 +40,6 @@ def admin(ctx):
     if ctx.author.id in admins:
         return(True)
     else:
-        await ctx.send(f"{ctx.author.name} is not authorised to use this command")
         return(False)
 
 # - Events -
