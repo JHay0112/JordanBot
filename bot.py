@@ -33,7 +33,7 @@ async def vote_on(ctx):
     await ctx.add_reaction("🔽")
 
 # Check user is admin first
-async def admin(ctx):
+def admin(ctx):
 
     global admins
 
