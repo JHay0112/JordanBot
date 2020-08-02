@@ -55,7 +55,7 @@ async def on_ready():
 async def on_message(ctx):
 
     # Add message reactions for images and embeds
-    if ctx.attachments or ctx.embeds:
+    if ctx.message.attachments or ctx.message.embeds:
         vote_on(ctx.message)
 
     await bot.process_commands(ctx)
