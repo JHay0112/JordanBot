@@ -65,7 +65,7 @@ async def on_message(ctx):
     if ctx.content.startswith("jbot"):
         # If the user is shannon
         if ctx.author.id == shannon:
-            await ctx.send("Horatio")
+            await ctx.message.send("Horatio")
 
     await bot.process_commands(ctx)
 
