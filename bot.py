@@ -23,6 +23,7 @@ import sys
 bot = commands.Bot(command_prefix = "jbot ") # Create bot instance
 key = open("key.txt", "r").readline() # Get key from text file
 admins = [306566109040082944] # User ID of admins
+shannon = 190696762749616128 # Shannon's ID
 
 # -- Functions --
 
@@ -54,9 +55,17 @@ async def on_ready():
 @bot.event
 async def on_message(ctx):
 
+    global shannon
+
     # Add message reactions for images and embeds
     if ctx.attachments or ctx.embeds:
         await vote_on(ctx)
+
+    # Check if the message starts with jbot
+    if ctx.content.startswith("jbot"):
+        # If the user is shannon
+        if ctx.author.id == shannon:
+            await ctx.send("Horatio")
 
     await bot.process_commands(ctx)
 
@@ -116,10 +125,6 @@ async def nuke(ctx):
     else:
 
         await ctx.message.add_reaction("🇧🇷")
-
-        # if Shannon then horatio
-        if(ctx.author.id == 190696762749616128):
-            await ctx.send("Horatio")
 
 # -- Main --
 
