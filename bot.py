@@ -61,13 +61,13 @@ async def on_message(ctx):
     if ctx.attachments or ctx.embeds:
         await vote_on(ctx)
 
+    await bot.process_commands(ctx)
+    
     # Check if the message starts with jbot
     if ctx.content.startswith("jbot"):
         # If the user is shannon
         if ctx.author.id == shannon:
             await ctx.channel.send("Horatio")
-
-    await bot.process_commands(ctx)
 
 # - Commands -
 
@@ -104,7 +104,7 @@ async def reload(ctx):
 
 # Ask JordanBot to fix something
 @bot.command()
-async def fix(ctx, arg):
+async def fix(ctx, *, arg):
 
     await ctx.send(f"'{arg}' aye? If it ain't broke, don't fix it")
 
