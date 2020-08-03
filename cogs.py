@@ -62,7 +62,7 @@ class Jordan(commands.Cog):
     async def cog_check(self, ctx):
 
         # Only authorise Jordan
-        if(ctx.author.id == JORDAN):
+        if(ctx.author.id == self.JORDAN):
             return(True)
         else:
             return(False)
