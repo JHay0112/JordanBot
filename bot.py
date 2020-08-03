@@ -15,33 +15,12 @@ from discord.ext import commands # Import discord commands
 import discord # Import the actualy discord
 import random # Used to randomly select things
 import time
-import subprocess
-import sys
 
 # -- Configuration --
 
 bot = commands.Bot(command_prefix = "jbot ") # Create bot instance
 key = open("key.txt", "r").readline() # Get key from text file
-admins = [306566109040082944] # User ID of admins
-shannon = 190696762749616128 # Shannon's ID
-
-# -- Functions --
-
-# Add reactions for users to vote on a message
-async def vote_on(ctx):
-
-    await ctx.add_reaction("🔼")
-    await ctx.add_reaction("🔽")
-
-# Check user is admin first
-def admin(ctx):
-
-    global admins
-
-    if ctx.author.id in admins:
-        return(True)
-    else:
-        return(False)
+SHANNON = 190696762749616128 # Shannon's ID
 
 # - Events -
 
@@ -55,77 +34,22 @@ async def on_ready():
 @bot.event
 async def on_message(ctx):
 
-    global shannon
+    global SHANNON
 
     # Add message reactions for images and embeds
     if ctx.attachments or ctx.embeds:
-        await vote_on(ctx)
+        await ctx.add_reaction("🔼")
+        await ctx.add_reaction("🔽")
 
     await bot.process_commands(ctx)
     
     # Check if the message starts with jbot
     if ctx.content.startswith("jbot"):
         # If the user is shannon
-        if ctx.author.id == shannon:
+        if ctx.author.id == SHANNON:
             await ctx.channel.send("Horatio")
-
-# - Commands -
-
-# Ping bot
-@bot.command()
-async def ping(ctx):
-    await ctx.send(f"Latency: {round((bot.latency * 1000), 1)}ms")
-
-# Vote on previous message in channel
-@bot.command()
-async def vote(ctx):
-
-    # get the previous message
-    prev_message = await ctx.channel.history(limit = 2).flatten()
-    prev_message = prev_message[-1]
-
-    # delete the message that called this command
-    await ctx.message.delete()
-
-    # Add reactions
-    await vote_on(prev_message)
-
-# Rebuild and reload code
-@bot.command()
-async def reload(ctx):
-
-    if(admin(ctx) == True):
-
-        await ctx.send("JordanBot may go down temporarily")
-
-        subprocess.call("./reload.sh")
-
-        sys.exit()
-
-# Ask JordanBot to fix something
-@bot.command()
-async def fix(ctx, *, arg):
-
-    await ctx.send(f"'{arg}' aye? If it ain't broke, don't fix it")
-
-@bot.command()
-async def nuke(ctx):
-
-    if(admin(ctx) == True):
-
-        await ctx.send("I apologise in advance for what I am about to do")
-
-        async for message in ctx.channel.history():
-
-            try:
-                await message.add_reaction("🇧🇷")
-            except:
-                pass
-
-    else:
-
-        await ctx.message.add_reaction("🇧🇷")
 
 # -- Main --
 
+bot.load_extension("cogs") # Load the cogs
 bot.run(key) # Run bot
