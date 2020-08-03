@@ -41,8 +41,8 @@ class Main(commands.Cog):
         await ctx.message.delete()
 
         # Add reactions
-        await ctx.add_reaction("🔼")
-        await ctx.add_reaction("🔽")
+        await prev_message.add_reaction("🔼")
+        await prev_message.add_reaction("🔽")
 
     # Ask JordanBot to fix something
     @commands.command()
