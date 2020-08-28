@@ -54,15 +54,15 @@ class Main(commands.Cog):
     # Ask JordanBot about the weather
 	@commands.command()
 	async def weather(self, ctx):
-		
+
 		weathers = ["raining",
 				   "hailing",
 				   "overcast",
 				   "sunny",
 				   "snowing"]
-		
+
 		weather = random.choice(weathers)
-		
+
 		days = ["monday",
 			   "tuesday",
 			   "wednesday",
@@ -81,17 +81,17 @@ class Main(commands.Cog):
 			   "in 2 months",
 			   "in a decade",
 			   "in a century"]
-		
+
 		day = random.choice(days)
-		
+
 		high = random.randint(-20, 50)
-		
+
 		low = random.randint(-20, 50)
-		
+
 		while(high < low):
-			
+
 			low = random.randint(-20, 50)
-		
+
 		await ctx.send(f"It will be {weather} {day}, with a high of {high}°C and a low of {low}°C")
 
 # Jordan only commands
