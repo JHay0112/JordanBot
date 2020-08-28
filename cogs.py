@@ -14,6 +14,7 @@
 from discord.ext import commands # Import discord commands
 import subprocess
 import sys
+import random
 
 # -- Cogs --
 
@@ -49,6 +50,49 @@ class Main(commands.Cog):
     async def fix(self, ctx, *, arg):
 
         await ctx.send(f"'{arg}' aye? If it ain't broke, don't fix it")
+        
+    # Ask JordanBot about the weather
+	@commands.command()
+	async def weather(self, ctx):
+		
+		weathers = ["raining",
+				   "hailing",
+				   "overcast",
+				   "sunny",
+				   "snowing"]
+		
+		weather = random.choice(weathers)
+		
+		days = ["monday",
+			   "tuesday",
+			   "wednesday",
+			   "thursday",
+			   "friday",
+			   "tomorrow",
+			   "today",
+			   "in 2 days",
+			   "in a fortnight",
+			   "in a week",
+			   "in 3 days",
+			   "in 4 days",
+			   "in 5 days",
+			   "in 6 days",
+			   "in a month",
+			   "in 2 months",
+			   "in a decade",
+			   "in a century"]
+		
+		day = random.choice(days)
+		
+		high = random.randint(-20, 50)
+		
+		low = random.randint(-20, 50)
+		
+		while(high < low):
+			
+			low = random.randint(-20, 50)
+		
+		await ctx.send(f"It will be {weather} {day}, with a high of {high}°C and a low of {low}°C")
 
 # Jordan only commands
 class Jordan(commands.Cog):
